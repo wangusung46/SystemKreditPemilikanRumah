@@ -5,12 +5,24 @@
  */
 package Form;
 
+import Koneksi.Koneksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
+import java.sql.Connection;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.Timer;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -21,6 +33,7 @@ public class FUtama extends javax.swing.JFrame {
     /**
      * Creates new form f_utama
      */
+    private final Connection conn = new Koneksi().getConnection();
     public FUtama() {
         initComponents();
 
@@ -110,11 +123,11 @@ public class FUtama extends javax.swing.JFrame {
         jMenuItemProfile = new javax.swing.JMenuItem();
         jMenuItemExit = new javax.swing.JMenuItem();
         Laporan = new javax.swing.JMenu();
-        LapDataPemohon = new javax.swing.JMenuItem();
-        LapDataJaminan = new javax.swing.JMenuItem();
-        LapDataBiChecking = new javax.swing.JMenuItem();
-        LapKesesuaianData = new javax.swing.JMenuItem();
-        LapHasilPerhitunganBiChecking = new javax.swing.JMenuItem();
+        DataNasabah = new javax.swing.JMenuItem();
+        DataJaminan = new javax.swing.JMenuItem();
+        BIChecking = new javax.swing.JMenuItem();
+        PerhitunganBIChecking = new javax.swing.JMenuItem();
+        AnalisaNasabah = new javax.swing.JMenuItem();
         Help = new javax.swing.JMenu();
         About = new javax.swing.JMenu();
 
@@ -327,55 +340,55 @@ public class FUtama extends javax.swing.JFrame {
         Laporan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Laporan.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
 
-        LapDataPemohon.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        LapDataPemohon.setText("Lap. Data Barang");
-        LapDataPemohon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LapDataPemohon.addActionListener(new java.awt.event.ActionListener() {
+        DataNasabah.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        DataNasabah.setText("Lap. Data Nasabah");
+        DataNasabah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DataNasabah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LapDataPemohonActionPerformed(evt);
+                DataNasabahActionPerformed(evt);
             }
         });
-        Laporan.add(LapDataPemohon);
+        Laporan.add(DataNasabah);
 
-        LapDataJaminan.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        LapDataJaminan.setText("Lap. Data Supplier");
-        LapDataJaminan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LapDataJaminan.addActionListener(new java.awt.event.ActionListener() {
+        DataJaminan.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        DataJaminan.setText("Lap. Data Jaminan");
+        DataJaminan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DataJaminan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LapDataJaminanActionPerformed(evt);
+                DataJaminanActionPerformed(evt);
             }
         });
-        Laporan.add(LapDataJaminan);
+        Laporan.add(DataJaminan);
 
-        LapDataBiChecking.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        LapDataBiChecking.setText("Lap. Data Member");
-        LapDataBiChecking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LapDataBiChecking.addActionListener(new java.awt.event.ActionListener() {
+        BIChecking.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        BIChecking.setText("Lap. Data BI Checking");
+        BIChecking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BIChecking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LapDataBiCheckingActionPerformed(evt);
+                BICheckingActionPerformed(evt);
             }
         });
-        Laporan.add(LapDataBiChecking);
+        Laporan.add(BIChecking);
 
-        LapKesesuaianData.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        LapKesesuaianData.setText("Lap. Pembelian");
-        LapKesesuaianData.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LapKesesuaianData.addActionListener(new java.awt.event.ActionListener() {
+        PerhitunganBIChecking.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        PerhitunganBIChecking.setText("Lap. Perhitungan BI Checking");
+        PerhitunganBIChecking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PerhitunganBIChecking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LapKesesuaianDataActionPerformed(evt);
+                PerhitunganBICheckingActionPerformed(evt);
             }
         });
-        Laporan.add(LapKesesuaianData);
+        Laporan.add(PerhitunganBIChecking);
 
-        LapHasilPerhitunganBiChecking.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        LapHasilPerhitunganBiChecking.setText("Lap. Penjualan");
-        LapHasilPerhitunganBiChecking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LapHasilPerhitunganBiChecking.addActionListener(new java.awt.event.ActionListener() {
+        AnalisaNasabah.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        AnalisaNasabah.setText("Lap. Analisa Nasabah");
+        AnalisaNasabah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AnalisaNasabah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LapHasilPerhitunganBiCheckingActionPerformed(evt);
+                AnalisaNasabahActionPerformed(evt);
             }
         });
-        Laporan.add(LapHasilPerhitunganBiChecking);
+        Laporan.add(AnalisaNasabah);
 
         jMenuBar1.add(Laporan);
 
@@ -417,14 +430,19 @@ public class FUtama extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItemExitActionPerformed
 
-    private void LapDataPemohonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LapDataPemohonActionPerformed
+    private void DataNasabahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataNasabahActionPerformed
         // TODO add your handling code here:
-        FLapDataPemohon FormData = new FLapDataPemohon();
-        FormData.id_user = l_id_user.getText();
-        FormData.nama_user = l_nama_user.getText();
-        FormData.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_LapDataPemohonActionPerformed
+        try {
+            HashMap parameter = new HashMap();
+            InputStream file = getClass().getResourceAsStream("/report/DataNasabah.jrxml");
+            JasperDesign JasperDesign = JRXmlLoader.load(file);
+            JasperReport JasperReport = JasperCompileManager.compileReport(JasperDesign);
+            JasperPrint JasperPrint = JasperFillManager.fillReport(JasperReport, parameter, conn );
+            JasperViewer.viewReport(JasperPrint, false);
+        } catch (JRException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_DataNasabahActionPerformed
 
     private void b_data_jaminanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_data_jaminanActionPerformed
         // TODO add your handling code here:
@@ -435,28 +453,43 @@ public class FUtama extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_b_data_jaminanActionPerformed
 
-    private void LapDataJaminanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LapDataJaminanActionPerformed
+    private void DataJaminanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataJaminanActionPerformed
         // TODO add your handling code here:
-        FormDataJaminan FormData = new FormDataJaminan();
-        FormData.id_user = l_id_user.getText();
-        FormData.nama_user = l_nama_user.getText();
-        FormData.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_LapDataJaminanActionPerformed
+        try {
+            HashMap parameter = new HashMap();
+            InputStream file = getClass().getResourceAsStream("/report/DataJaminan.jrxml");
+            JasperDesign JasperDesign = JRXmlLoader.load(file);
+            JasperReport JasperReport = JasperCompileManager.compileReport(JasperDesign);
+            JasperPrint JasperPrint = JasperFillManager.fillReport(JasperReport, parameter, conn );
+            JasperViewer.viewReport(JasperPrint, false);
+        } catch (JRException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_DataJaminanActionPerformed
 
     private void b_data_bi_checkingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_data_bi_checkingActionPerformed
         // TODO add your handling code here:
-        FDataPemohon FormData = new FDataPemohon();
+        FDataBIChecking FormData = new FDataBIChecking();
         FormData.id_user = l_id_user.getText();
         FormData.nama_user = l_nama_user.getText();
         FormData.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_b_data_bi_checkingActionPerformed
 
-    private void LapDataBiCheckingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LapDataBiCheckingActionPerformed
+    private void BICheckingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BICheckingActionPerformed
         // TODO add your handling code here:
+        try {
+            HashMap parameter = new HashMap();
+            InputStream file = getClass().getResourceAsStream("/report/DataBIChecking.jrxml");
+            JasperDesign JasperDesign = JRXmlLoader.load(file);
+            JasperReport JasperReport = JasperCompileManager.compileReport(JasperDesign);
+            JasperPrint JasperPrint = JasperFillManager.fillReport(JasperReport, parameter, conn );
+            JasperViewer.viewReport(JasperPrint, false);
+        } catch (JRException e) {
+            System.out.println(e);
+        }
 
-    }//GEN-LAST:event_LapDataBiCheckingActionPerformed
+    }//GEN-LAST:event_BICheckingActionPerformed
 
     private void b_kesesuaian_dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_kesesuaian_dataActionPerformed
         // TODO add your handling code here:
@@ -468,10 +501,19 @@ public class FUtama extends javax.swing.JFrame {
 
     }//GEN-LAST:event_b_kesesuaian_dataActionPerformed
 
-    private void LapKesesuaianDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LapKesesuaianDataActionPerformed
+    private void PerhitunganBICheckingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PerhitunganBICheckingActionPerformed
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_LapKesesuaianDataActionPerformed
+        try {
+            HashMap parameter = new HashMap();
+            InputStream file = getClass().getResourceAsStream("/report/DataPerhitunganBIChecking.jrxml");
+            JasperDesign JasperDesign = JRXmlLoader.load(file);
+            JasperReport JasperReport = JasperCompileManager.compileReport(JasperDesign);
+            JasperPrint JasperPrint = JasperFillManager.fillReport(JasperReport, parameter, conn );
+            JasperViewer.viewReport(JasperPrint, false);
+        } catch (JRException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_PerhitunganBICheckingActionPerformed
 
     private void b_hasil_perhitungan_bi_checkingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_hasil_perhitungan_bi_checkingActionPerformed
         // TODO add your handling code here:
@@ -482,10 +524,19 @@ public class FUtama extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_b_hasil_perhitungan_bi_checkingActionPerformed
 
-    private void LapHasilPerhitunganBiCheckingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LapHasilPerhitunganBiCheckingActionPerformed
+    private void AnalisaNasabahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalisaNasabahActionPerformed
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_LapHasilPerhitunganBiCheckingActionPerformed
+        try {
+            HashMap parameter = new HashMap();
+            InputStream file = getClass().getResourceAsStream("/report/DataAnalisaNasabah.jrxml");
+            JasperDesign JasperDesign = JRXmlLoader.load(file);
+            JasperReport JasperReport = JasperCompileManager.compileReport(JasperDesign);
+            JasperPrint JasperPrint = JasperFillManager.fillReport(JasperReport, parameter, conn );
+            JasperViewer.viewReport(JasperPrint, false);
+        } catch (JRException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_AnalisaNasabahActionPerformed
 
     /**
      * @param args the command line arguments
@@ -520,15 +571,15 @@ public class FUtama extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu About;
+    private javax.swing.JMenuItem AnalisaNasabah;
+    private javax.swing.JMenuItem BIChecking;
+    private javax.swing.JMenuItem DataJaminan;
+    private javax.swing.JMenuItem DataNasabah;
     private javax.swing.JMenu File;
     private javax.swing.JMenu Help;
     private javax.swing.JLabel LBackgroundHome;
-    private javax.swing.JMenuItem LapDataBiChecking;
-    private javax.swing.JMenuItem LapDataJaminan;
-    private javax.swing.JMenuItem LapDataPemohon;
-    private javax.swing.JMenuItem LapHasilPerhitunganBiChecking;
-    private javax.swing.JMenuItem LapKesesuaianData;
     private javax.swing.JMenu Laporan;
+    private javax.swing.JMenuItem PerhitunganBIChecking;
     private javax.swing.JButton b_data_bi_checking;
     private javax.swing.JButton b_data_jaminan;
     private javax.swing.JButton b_data_pemohon;

@@ -331,7 +331,7 @@ public class FDataBIChecking extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private String id_user, nama_user, idBi;
+    public String id_user, nama_user, idBi;
 
     private void kodeBi() {
         try {

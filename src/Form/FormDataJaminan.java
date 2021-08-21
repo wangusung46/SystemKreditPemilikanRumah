@@ -30,7 +30,9 @@ public class FormDataJaminan extends javax.swing.JFrame {
      * Creates new form FDataBarang
      */
     private DefaultTableModel tabmode;
-    Connection conn = new Koneksi().getConnection();
+    private final Connection conn = new Koneksi().getConnection();
+    private Statement statement;
+    private String sql;
 
     NumberFormat numberFormat = NumberFormat.getNumberInstance(new Locale("in", "ID"));
 
@@ -42,9 +44,9 @@ public class FormDataJaminan extends javax.swing.JFrame {
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 
         view_data();
+        tampilNasabah();
 
 //        list_data_jaminan();
-
     }
 
     /**
@@ -63,7 +65,7 @@ public class FormDataJaminan extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         t_kode_jaminan = new javax.swing.JTextField();
-        t_nama_jaminan = new javax.swing.JTextField();
+        t_imb = new javax.swing.JTextField();
         b_save = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
         b_refresh_table = new javax.swing.JButton();
@@ -74,6 +76,14 @@ public class FormDataJaminan extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         b_edit = new javax.swing.JButton();
         b_delete = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        c_kode_nasabah = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        t_nama_nasabah = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        t_sert = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        t_skt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -108,11 +118,11 @@ public class FormDataJaminan extends javax.swing.JFrame {
 
         jLabel3.setText("Kode Jaminan");
 
-        jLabel4.setText("Nama Jaminan");
+        jLabel4.setText("IMB");
 
         t_kode_jaminan.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        t_nama_jaminan.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        t_imb.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
         b_save.setText("SAVE");
         b_save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -187,11 +197,31 @@ public class FormDataJaminan extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Kode Nasabah");
+
+        c_kode_nasabah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c_kode_nasabahActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Nama Nasabah");
+
+        t_nama_nasabah.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+
+        jLabel7.setText("No. Sert Tanah");
+
+        t_sert.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+
+        jLabel9.setText("SKT");
+
+        t_skt.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,30 +229,44 @@ public class FormDataJaminan extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(t_nama_jaminan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                                    .addComponent(t_kode_jaminan))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(b_search, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(t_search))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(b_refresh_table, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b_edit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(b_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(t_imb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                                    .addComponent(t_sert, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(t_skt, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(t_nama_nasabah)
+                                        .addComponent(c_kode_nasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(t_kode_jaminan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(b_save, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(267, 267, 267)))
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -238,24 +282,42 @@ public class FormDataJaminan extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(t_kode_jaminan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(7, 7, 7)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(c_kode_nasabah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(t_nama_jaminan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6)
+                                    .addComponent(t_nama_nasabah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(b_save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(78, 78, 78)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(b_save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel4)
+                                            .addComponent(t_imb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel7)
+                                            .addComponent(t_sert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
                                         .addComponent(b_refresh_table, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(b_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(b_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(b_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel9)
+                                            .addComponent(t_skt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(b_search)
@@ -289,13 +351,18 @@ public class FormDataJaminan extends javax.swing.JFrame {
 
     private void reset_text() {
         t_kode_jaminan.setText("");
-        t_nama_jaminan.setText("");
+        c_kode_nasabah.setSelectedItem("-Pilih--");
+        t_imb.setText("");
     }
 
     private void view_data() {
         Object[] baris = {
             "Kode Jaminan",
-            "Nama Jaminan"
+            "Kode nasabah",
+            "Nama nasabah",
+            "Nomor IMB",
+            "Nomor Sertifikat Tanah",
+            "Surat Kariawan Tetap"
         };
         tabmode = new DefaultTableModel(null, baris);
         tbl_data_jaminan.setModel(tabmode);
@@ -306,23 +373,61 @@ public class FormDataJaminan extends javax.swing.JFrame {
             search = t_search.getText();
         }
         try {
-            String sql = "SELECT * FROM tb_data_jaminan"
+            sql = "SELECT * FROM tb_data_jaminan"
                     + " WHERE kode_jaminan LIKE '%" + search + "%'"
-                    + " OR nama_jaminan LIKE '%" + search + "%'"
                     + " ORDER BY kode_jaminan ASC";
             Statement stat = conn.createStatement();
             ResultSet hasil = stat.executeQuery(sql);
             while (hasil.next()) {
-                String kode = hasil.getString("kode_jaminan");
-                String nama = hasil.getString("nama_jaminan");
+                String kodeJaminan = hasil.getString("kode_jaminan");
+                String kodeNasabah = hasil.getString("kode_nasabah");
+                String namaNasabah = hasil.getString("nama_nasabah");
+                String imb = hasil.getString("imb");
+                String nst = hasil.getString("sertifikat_tanah");
+                String skt = hasil.getString("skt");
                 String[] data = {
-                    kode,
-                    nama
+                    kodeJaminan,
+                    kodeNasabah,
+                    namaNasabah,
+                    imb,
+                    nst,
+                    skt
                 };
                 tabmode.addRow(data);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Menampilkan data GAGAL\n" + e, "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    private void tampilNasabah() {
+        c_kode_nasabah.removeAllItems();
+        try {
+            sql = "SELECT * FROM tb_data_pemohon ORDER BY id_pemohon";
+            statement = conn.createStatement();
+            ResultSet hasil = statement.executeQuery(sql);
+            c_kode_nasabah.addItem("--Pilih--");
+            while (hasil.next()) {
+                String kode = hasil.getString("id_pemohon");
+                c_kode_nasabah.addItem(kode);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Kode Nasabah TIDAK DITEMUKAN.\n" + e, "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void listNasabah() {
+        try {
+            sql = "SELECT * FROM tb_data_pemohon WHERE id_pemohon = '" + c_kode_nasabah.getSelectedItem() + "'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                t_nama_nasabah.setText(rs.getString("nama_pemohon"));
+            } else {
+                t_nama_nasabah.setText(null);
+            }
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e, "Info", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -356,15 +461,23 @@ public class FormDataJaminan extends javax.swing.JFrame {
 
     private void save_data() {
         try {
-            String sql = "INSERT INTO tb_data_jaminan VALUES"
+            sql = "INSERT INTO tb_data_jaminan VALUES"
                     + "("
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
                     + "?,"
                     + "?"
                     + ")";
             PreparedStatement stat;
             stat = conn.prepareStatement(sql);
             stat.setString(1, t_kode_jaminan.getText());
-            stat.setString(2, t_nama_jaminan.getText());
+            stat.setString(2, c_kode_nasabah.getSelectedItem().toString());
+            stat.setString(3, t_nama_nasabah.getText());
+            stat.setString(4, t_imb.getText());
+            stat.setString(5, t_sert.getText());
+            stat.setString(6, t_skt.getText());
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Menyimpan data BERHASIL", "Info", JOptionPane.INFORMATION_MESSAGE);
             view_data();
@@ -377,12 +490,20 @@ public class FormDataJaminan extends javax.swing.JFrame {
 
     private void update_data() {
         try {
-            String sql = "UPDATE tb_data_jaminan set "
-                    + "nama_jaminan=?"
+            sql = "UPDATE tb_data_jaminan set "
+                    + "kode_nasabah=?,"
+                    + "nama_nasabah=?,"
+                    + "imb=?,"
+                    + "sertifikat_tanah=?,"
+                    + "skt=?"
                     + " WHERE kode_jaminan='" + t_kode_jaminan.getText() + "'";
             PreparedStatement stat;
             stat = conn.prepareStatement(sql);
-            stat.setString(1, t_nama_jaminan.getText());
+            stat.setString(1, c_kode_nasabah.getSelectedItem().toString());
+            stat.setString(2, t_nama_nasabah.getText());
+            stat.setString(3, t_imb.getText());
+            stat.setString(4, t_sert.getText());
+            stat.setString(5, t_skt.getText());
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Update data BERHASIL", "Info", JOptionPane.INFORMATION_MESSAGE);
             b_save.setText("SAVE");
@@ -400,9 +521,21 @@ public class FormDataJaminan extends javax.swing.JFrame {
         if ("".equals(t_kode_jaminan.getText())) {
             JOptionPane.showMessageDialog(null, "Kode Jaminan BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
             t_kode_jaminan.requestFocus();
+        } else if ("--Pilih--".equals(c_kode_nasabah.getSelectedItem().toString())) {
+            JOptionPane.showMessageDialog(null, "Kode Nasabah BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            c_kode_nasabah.requestFocus();
+        } else if ("".equals(t_imb.getText())) {
+            JOptionPane.showMessageDialog(null, "IMB BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            t_imb.requestFocus();
+        } else if ("".equals(t_sert.getText())) {
+            JOptionPane.showMessageDialog(null, "Sertifikat Tanah BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            t_sert.requestFocus();
+        } else if ("".equals(t_skt.getText())) {
+            JOptionPane.showMessageDialog(null, "Surat Kariyawan Tetap BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            t_skt.requestFocus();
         } else {
             if ("SAVE".equals(b_save.getText())) {
-                String sql = "SELECT * FROM tb_data_jaminan WHERE kode_jaminan='" + t_kode_jaminan.getText() + "'";
+                sql = "SELECT * FROM tb_data_jaminan WHERE kode_jaminan='" + t_kode_jaminan.getText() + "'";
                 try {
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ResultSet rs = ps.executeQuery();
@@ -435,7 +568,7 @@ public class FormDataJaminan extends javax.swing.JFrame {
     }//GEN-LAST:event_b_refresh_tableActionPerformed
 
     private void search_data_jaminan() {
-        String sql = ""
+        sql = ""
                 + " SELECT *"
                 + " FROM tb_data_jaminan"
                 + " WHERE kode_jaminan='" + t_kode_jaminan.getText() + "'";
@@ -468,11 +601,19 @@ public class FormDataJaminan extends javax.swing.JFrame {
             if (baris < 0) {
                 JOptionPane.showMessageDialog(null, "Data yang akan diedit BELUM DIPILIH!", "Info", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                String kode = (String) tbl_data_jaminan.getValueAt(baris, 0);
-                String nama = (String) tbl_data_jaminan.getValueAt(baris, 1);
+                String kodeJaminan = (String) tbl_data_jaminan.getValueAt(baris, 0);
+                String kodeNasabah = (String) tbl_data_jaminan.getValueAt(baris, 1);
+                String namaNasabah = (String) tbl_data_jaminan.getValueAt(baris, 2);
+                String imb = (String) tbl_data_jaminan.getValueAt(baris, 3);
+                String nst = (String) tbl_data_jaminan.getValueAt(baris, 4);
+                String skt = (String) tbl_data_jaminan.getValueAt(baris, 5);
                 b_save.setText("UPDATE");
-                t_kode_jaminan.setText(kode);
-                t_nama_jaminan.setText(nama);
+                t_kode_jaminan.setText(kodeJaminan);
+                c_kode_nasabah.setSelectedItem(kodeNasabah);
+                t_nama_nasabah.setText(namaNasabah);
+                t_imb.setText(imb);
+                t_sert.setText(nst);
+                t_skt.setText(skt);
                 t_kode_jaminan.setEditable(false);
                 t_kode_jaminan.setBackground(new java.awt.Color(237, 229, 252));
                 t_kode_jaminan.requestFocus();
@@ -498,7 +639,7 @@ public class FormDataJaminan extends javax.swing.JFrame {
                 if (ok == 0) {
                     try {
                         //panggil method koneksi
-                        String sql = "DELETE FROM tb_data_jaminan WHERE kode_jaminan ='" + kode + "'";
+                        sql = "DELETE FROM tb_data_jaminan WHERE kode_jaminan ='" + kode + "'";
                         Statement st = conn.createStatement();
                         st.executeUpdate(sql);
                         JOptionPane.showMessageDialog(null, "Menghapus data BERHASIL", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -541,15 +682,16 @@ public class FormDataJaminan extends javax.swing.JFrame {
 //        t_alamat.setText(f);
     }//GEN-LAST:event_tbl_data_jaminanMouseClicked
 
+    private void c_kode_nasabahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_kode_nasabahActionPerformed
+        // TODO add your handling code here:
+        listNasabah();
+    }//GEN-LAST:event_c_kode_nasabahActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -560,33 +702,6 @@ public class FormDataJaminan extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormDataJaminan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new FormDataJaminan().setVisible(true);
         });
@@ -599,17 +714,25 @@ public class FormDataJaminan extends javax.swing.JFrame {
     private javax.swing.JButton b_refresh_table;
     private javax.swing.JButton b_save;
     private javax.swing.JButton b_search;
+    private javax.swing.JComboBox<String> c_kode_nasabah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField t_imb;
     private javax.swing.JTextField t_kode_jaminan;
-    private javax.swing.JTextField t_nama_jaminan;
+    private javax.swing.JTextField t_nama_nasabah;
     private javax.swing.JTextField t_search;
+    private javax.swing.JTextField t_sert;
+    private javax.swing.JTextField t_skt;
     private javax.swing.JTable tbl_data_jaminan;
     // End of variables declaration//GEN-END:variables
 }

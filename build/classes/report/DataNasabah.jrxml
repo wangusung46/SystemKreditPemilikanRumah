@@ -27,18 +27,14 @@ FROM
 	</background>
 	<title>
 		<band height="70" splitType="Stretch">
-			<image>
-				<reportElement x="-20" y="0" width="595" height="64"/>
-				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement style="Title" x="0" y="5" width="464" height="33"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement style="Title" x="0" y="5" width="555" height="33" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Sistem Kredit Kepemilikan Rumah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF"/>
-				<textElement textAlignment="Right"/>
+				<reportElement style="SubTitle" x="0" y="38" width="553" height="22" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Data Nasabah]]></text>
 			</staticText>
 		</band>
@@ -56,27 +52,27 @@ FROM
 			</line>
 			<staticText>
 				<reportElement style="Column header" x="0" y="19" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[ID Nasabah]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="111" y="19" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Nama Nasabah]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="222" y="19" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[NIK Nasabah]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="333" y="19" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Alamat Nasabah]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="444" y="19" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Nomor HP Nasabah]]></text>
 			</staticText>
 		</band>
@@ -91,27 +87,27 @@ FROM
 			</line>
 			<textField>
 				<reportElement style="Detail" x="0" y="0" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tb_data_pemohon_id_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="Detail" x="111" y="0" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tb_data_pemohon_nama_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="Detail" x="222" y="0" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tb_data_pemohon_nik}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="Detail" x="333" y="0" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tb_data_pemohon_alamat_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="Detail" x="444" y="0" width="111" height="15"/>
-				<textElement/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tb_data_pemohon_no_hp_pemohon}]]></textFieldExpression>
 			</textField>
 		</band>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
@@ -9,19 +9,21 @@
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
-     tb_data_pemohon.`id_pemohon` AS tb_data_pemohon_id_pemohon,
-     tb_data_pemohon.`nama_pemohon` AS tb_data_pemohon_nama_pemohon,
-     tb_data_pemohon.`nik` AS tb_data_pemohon_nik,
-     tb_data_pemohon.`alamat_pemohon` AS tb_data_pemohon_alamat_pemohon,
-     tb_data_pemohon.`no_hp_pemohon` AS tb_data_pemohon_no_hp_pemohon
+     tb_hasil_analisa.`id_analisa` AS tb_hasil_analisa_id_analisa,
+     tb_hasil_analisa.`kode_nasabah` AS tb_hasil_analisa_kode_nasabah,
+     tb_hasil_analisa.`nama_nasabah` AS tb_hasil_analisa_nama_nasabah,
+     tb_hasil_analisa.`gaji` AS tb_hasil_analisa_gaji,
+     tb_hasil_analisa.`tenor` AS tb_hasil_analisa_tenor,
+     tb_hasil_analisa.`kesanggupan` AS tb_hasil_analisa_kesanggupan
 FROM
-     `tb_data_pemohon` tb_data_pemohon]]>
+     `tb_hasil_analisa` tb_hasil_analisa]]>
 	</queryString>
-	<field name="tb_data_pemohon_id_pemohon" class="java.lang.String"/>
-	<field name="tb_data_pemohon_nama_pemohon" class="java.lang.String"/>
-	<field name="tb_data_pemohon_nik" class="java.lang.String"/>
-	<field name="tb_data_pemohon_alamat_pemohon" class="java.lang.String"/>
-	<field name="tb_data_pemohon_no_hp_pemohon" class="java.lang.String"/>
+	<field name="tb_hasil_analisa_id_analisa" class="java.lang.String"/>
+	<field name="tb_hasil_analisa_kode_nasabah" class="java.lang.String"/>
+	<field name="tb_hasil_analisa_nama_nasabah" class="java.lang.String"/>
+	<field name="tb_hasil_analisa_gaji" class="java.lang.Integer"/>
+	<field name="tb_hasil_analisa_tenor" class="java.lang.Integer"/>
+	<field name="tb_hasil_analisa_kesanggupan" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -33,9 +35,9 @@ FROM
 				<text><![CDATA[Sistem Kredit Kepemilikan Rumah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="0" y="38" width="553" height="22" forecolor="#000000"/>
+				<reportElement style="SubTitle" x="0" y="38" width="555" height="22" forecolor="#000000"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Data Nasabah]]></text>
+				<text><![CDATA[Data Analisa Nasabah]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -51,29 +53,34 @@ FROM
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="0" y="19" width="111" height="15"/>
+				<reportElement style="Column header" x="0" y="19" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[ID Nasabah]]></text>
+				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="111" y="19" width="111" height="15"/>
+				<reportElement style="Column header" x="92" y="19" width="92" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Kode Nasabah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="19" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Nama Nasabah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="222" y="19" width="111" height="15"/>
+				<reportElement style="Column header" x="276" y="19" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[NIK Nasabah]]></text>
+				<text><![CDATA[Gaji]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="333" y="19" width="111" height="15"/>
+				<reportElement style="Column header" x="368" y="19" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Alamat Nasabah]]></text>
+				<text><![CDATA[Tenor]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="444" y="19" width="111" height="15"/>
+				<reportElement style="Column header" x="460" y="19" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Nomor HP Nasabah]]></text>
+				<text><![CDATA[Kesanggupan]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -86,29 +93,34 @@ FROM
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement style="Detail" x="0" y="0" width="111" height="15"/>
+				<reportElement style="Detail" x="0" y="0" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tb_data_pemohon_id_pemohon}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tb_hasil_analisa_id_analisa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="111" y="0" width="111" height="15"/>
+				<reportElement style="Detail" x="92" y="0" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tb_data_pemohon_nama_pemohon}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tb_hasil_analisa_kode_nasabah}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="222" y="0" width="111" height="15"/>
+				<reportElement style="Detail" x="184" y="0" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tb_data_pemohon_nik}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tb_hasil_analisa_nama_nasabah}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="333" y="0" width="111" height="15"/>
+				<reportElement style="Detail" x="276" y="0" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tb_data_pemohon_alamat_pemohon}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tb_hasil_analisa_gaji}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="444" y="0" width="111" height="15"/>
+				<reportElement style="Detail" x="368" y="0" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tb_data_pemohon_no_hp_pemohon}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tb_hasil_analisa_tenor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="460" y="0" width="92" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_hasil_analisa_kesanggupan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

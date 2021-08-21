@@ -208,7 +208,7 @@
                   <Color blue="fe" green="fe" red="fe" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Kesesuaian Data"/>
+                <Property name="text" type="java.lang.String" value="Perhitungan BI Checking"/>
               </Properties>
             </Component>
           </SubComponents>
