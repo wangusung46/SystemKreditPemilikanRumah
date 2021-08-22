@@ -42,7 +42,7 @@ public class FormDataJaminan extends javax.swing.JFrame {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height);
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-
+        t_nama_nasabah.setEnabled(false);
         view_data();
         tampilNasabah();
 

@@ -47,7 +47,6 @@ public class FHasilAnalisaNasabah extends javax.swing.JFrame {
         t_nama_nasabah.setEnabled(false);
         t_nik.setEnabled(false);
         rp1.setEnabled(false);
-        rp2.setEnabled(false);
         rp3.setEnabled(false);
 
         kodeBi();
@@ -89,7 +88,6 @@ public class FHasilAnalisaNasabah extends javax.swing.JFrame {
         rp1 = new javax.swing.JTextField();
         c_kode_nasabah = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        rp2 = new javax.swing.JTextField();
         t_tenor = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         rp3 = new javax.swing.JTextField();
@@ -223,9 +221,6 @@ public class FHasilAnalisaNasabah extends javax.swing.JFrame {
 
         jLabel9.setText("Tenor");
 
-        rp2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        rp2.setText("Rp.");
-
         t_tenor.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
         jLabel10.setText("Kesanggupan");
@@ -304,15 +299,12 @@ public class FHasilAnalisaNasabah extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(rp3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(t_kesanggupan, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(rp2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(t_tenor, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(t_tenor))))
                         .addGap(114, 114, 114))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,8 +335,7 @@ public class FHasilAnalisaNasabah extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(t_nama_nasabah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9)
-                                    .addComponent(t_tenor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(t_tenor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5)
@@ -851,7 +842,6 @@ public class FHasilAnalisaNasabah extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField rp1;
-    private javax.swing.JTextField rp2;
     private javax.swing.JTextField rp3;
     private javax.swing.JTextField t_alamat_kerja;
     private javax.swing.JTextField t_gaji;

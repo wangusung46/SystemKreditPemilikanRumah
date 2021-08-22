@@ -70,7 +70,7 @@ FROM
 			<staticText>
 				<reportElement style="Column header" x="276" y="19" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Biaya]]></text>
+				<text><![CDATA[Bank Lain]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="368" y="19" width="92" height="15"/>

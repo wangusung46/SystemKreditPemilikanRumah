@@ -421,7 +421,7 @@ public class FPerhitunganBIChecking extends javax.swing.JFrame {
             "Kode nasabah",
             "Nama nasabah",
             "NIK",
-            "Biaya",
+            "Bank Lain",
             "Jumlah",
             "Status"
         };
