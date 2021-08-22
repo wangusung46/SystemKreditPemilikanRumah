@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="544"/>
+	<property name="ireport.y" value="44"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
      tb_perhitungan_bi_checking.`id_checking` AS tb_perhitungan_bi_checking_id_checking,
      tb_perhitungan_bi_checking.`kode_nasabah` AS tb_perhitungan_bi_checking_kode_nasabah,
@@ -21,7 +21,7 @@ FROM
 	<field name="tb_perhitungan_bi_checking_id_checking" class="java.lang.String"/>
 	<field name="tb_perhitungan_bi_checking_kode_nasabah" class="java.lang.String"/>
 	<field name="tb_perhitungan_bi_checking_nama_nasabah" class="java.lang.String"/>
-	<field name="tb_perhitungan_bi_checking_biaya" class="java.lang.Integer"/>
+	<field name="tb_perhitungan_bi_checking_biaya" class="java.lang.String"/>
 	<field name="tb_perhitungan_bi_checking_jumlah" class="java.lang.Integer"/>
 	<field name="tb_perhitungan_bi_checking_status" class="java.lang.String"/>
 	<background>
@@ -108,19 +108,19 @@ FROM
 				<textFieldExpression><![CDATA[$F{tb_perhitungan_bi_checking_nama_nasabah}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="276" y="0" width="92" height="15"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tb_perhitungan_bi_checking_biaya}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="368" y="0" width="92" height="15"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tb_perhitungan_bi_checking_jumlah}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement style="Detail" x="460" y="0" width="92" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tb_perhitungan_bi_checking_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="1" width="92" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_perhitungan_bi_checking_nama_nasabah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="368" y="1" width="92" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tb_perhitungan_bi_checking_biaya}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

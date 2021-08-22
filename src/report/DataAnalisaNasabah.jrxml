@@ -12,6 +12,9 @@
      tb_hasil_analisa.`id_analisa` AS tb_hasil_analisa_id_analisa,
      tb_hasil_analisa.`kode_nasabah` AS tb_hasil_analisa_kode_nasabah,
      tb_hasil_analisa.`nama_nasabah` AS tb_hasil_analisa_nama_nasabah,
+     tb_hasil_analisa.`nik` AS tb_hasil_analisa_nik,
+     tb_hasil_analisa.`tempat_kerja` AS tb_hasil_analisa_tempat_kerja,
+     tb_hasil_analisa.`alamat_kerja` AS tb_hasil_analisa_alamat_kerja,
      tb_hasil_analisa.`gaji` AS tb_hasil_analisa_gaji,
      tb_hasil_analisa.`tenor` AS tb_hasil_analisa_tenor,
      tb_hasil_analisa.`kesanggupan` AS tb_hasil_analisa_kesanggupan
@@ -21,8 +24,11 @@ FROM
 	<field name="tb_hasil_analisa_id_analisa" class="java.lang.String"/>
 	<field name="tb_hasil_analisa_kode_nasabah" class="java.lang.String"/>
 	<field name="tb_hasil_analisa_nama_nasabah" class="java.lang.String"/>
+	<field name="tb_hasil_analisa_nik" class="java.lang.String"/>
+	<field name="tb_hasil_analisa_tempat_kerja" class="java.lang.String"/>
+	<field name="tb_hasil_analisa_alamat_kerja" class="java.lang.String"/>
 	<field name="tb_hasil_analisa_gaji" class="java.lang.Integer"/>
-	<field name="tb_hasil_analisa_tenor" class="java.lang.Integer"/>
+	<field name="tb_hasil_analisa_tenor" class="java.lang.String"/>
 	<field name="tb_hasil_analisa_kesanggupan" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
