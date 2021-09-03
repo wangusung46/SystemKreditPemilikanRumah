@@ -29,13 +29,19 @@ FROM
 	</background>
 	<title>
 		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="65"/>
+				<imageExpression><![CDATA[new javax.swing.ImageIcon(getClass().getResource("/Img/WhatsApp Image 2021-09-02 at 11.19.10.jpeg")).getImage()]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement style="Title" x="0" y="5" width="555" height="33" forecolor="#000000"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Sistem Kredit Kepemilikan Rumah]]></text>
+				<reportElement style="SubTitle" x="0" y="33" width="555" height="22" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Kantor Layanan Syariah Wahid Hasyim - Jalan KH. Wahid Hasyim No. 153 Jakarta Pusat 10240]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="0" y="38" width="555" height="22" forecolor="#000000"/>
+				<reportElement style="Title" x="0" y="0" width="555" height="33" forecolor="#000000"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Data BI Checking]]></text>
 			</staticText>
@@ -125,13 +131,25 @@ FROM
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
+		<band height="122" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="121" width="555" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="355" y="4" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Jakarta, " + new SimpleDateFormat("EEEE, dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="452" y="50" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hari Gumbira]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 	<pageFooter>
@@ -149,13 +167,6 @@ FROM
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="0" y="0" width="197" height="20"/>
-				<textElement>
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Jakarta, " + new SimpleDateFormat("EEEE, dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

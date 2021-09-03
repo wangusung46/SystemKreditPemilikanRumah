@@ -132,12 +132,12 @@ public class FUtama extends javax.swing.JFrame {
         About = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SYSTEM PENJUALAN HANDPHONE");
+        setTitle("SYSTEM KREDIT KEPEMILIKAN RUMAH");
 
         jPanel1.setBackground(new java.awt.Color(177, 217, 217));
 
         LBackgroundHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LBackgroundHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/beli-rumah-secara-online-daring-virtual-readdive-realestat-id-dok-356x220.jpg"))); // NOI18N
+        LBackgroundHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/WhatsApp Image 2021-09-02 at 11.20.28.jpeg"))); // NOI18N
 
         l_jam.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         l_jam.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -412,6 +412,8 @@ public class FUtama extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        getAccessibleContext().setAccessibleName("RAFLI");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

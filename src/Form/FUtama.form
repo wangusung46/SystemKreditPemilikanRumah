@@ -146,8 +146,11 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="SYSTEM PENJUALAN HANDPHONE"/>
+    <Property name="title" type="java.lang.String" value="SYSTEM KREDIT KEPEMILIKAN RUMAH"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="RAFLI"/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -274,7 +277,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Img/beli-rumah-secara-online-daring-virtual-readdive-realestat-id-dok-356x220.jpg"/>
+              <Image iconType="3" name="/Img/WhatsApp Image 2021-09-02 at 11.20.28.jpeg"/>
             </Property>
           </Properties>
         </Component>
