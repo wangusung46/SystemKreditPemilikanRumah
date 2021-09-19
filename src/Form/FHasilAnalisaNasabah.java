@@ -479,11 +479,11 @@ public class FHasilAnalisaNasabah extends javax.swing.JFrame {
             "Kode nasabah",
             "Nama nasabah",
             "NIK",
+            "Tempat Kerja",
+            "Alamat kerja",
             "Gaji",
             "Tenor",
-            "Kesanggupan",
-            "Tempat Kerja",
-            "Alamat kerja"
+            "Kesanggupan"
         };
         tabmode = new DefaultTableModel(null, baris);
         tbl_data_bi_Checking.setModel(tabmode);
@@ -614,16 +614,16 @@ public class FHasilAnalisaNasabah extends javax.swing.JFrame {
         } else if ("".equals(t_tempat_kerja.getText())) {
             JOptionPane.showMessageDialog(null, "Tempat Kerja BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
             t_tempat_kerja.requestFocus();
-        }else if ("".equals(t_alamat_kerja.getText())) {
+        } else if ("".equals(t_alamat_kerja.getText())) {
             JOptionPane.showMessageDialog(null, "Alamat Kerja BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
             t_alamat_kerja.requestFocus();
-        }else if ("".equals(t_gaji.getText())) {
+        } else if ("".equals(t_gaji.getText())) {
             JOptionPane.showMessageDialog(null, "Gaji BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
             t_gaji.requestFocus();
-        }else if ("".equals(t_tenor.getText())) {
+        } else if ("".equals(t_tenor.getText())) {
             JOptionPane.showMessageDialog(null, "Tenor BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
             t_tenor.requestFocus();
-        }else if ("".equals(t_kesanggupan.getText())) {
+        } else if ("".equals(t_kesanggupan.getText())) {
             JOptionPane.showMessageDialog(null, "Kesanggupan BELUM DIISI!", "Info", JOptionPane.INFORMATION_MESSAGE);
             t_kesanggupan.requestFocus();
         } else {
