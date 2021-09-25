@@ -146,8 +146,15 @@ FROM
 				<textFieldExpression><![CDATA["Jakarta, " + new SimpleDateFormat("EEEE, dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="452" y="50" width="100" height="20"/>
+				<reportElement x="452" y="68" width="100" height="20"/>
 				<textElement/>
+				<text><![CDATA[Pemimpin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="452" y="48" width="100" height="20"/>
+				<textElement verticalAlignment="Bottom">
+					<font isUnderline="true"/>
+				</textElement>
 				<text><![CDATA[Hari Gumbira]]></text>
 			</staticText>
 		</band>
